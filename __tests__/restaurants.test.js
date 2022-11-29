@@ -48,12 +48,12 @@ describe('/api/v1/restaurants routes', () => {
         },
       ]
     `);
-  })
-    .get('#GET api/v1/restaurants/:id should return a restaurant with id and nested reviews', async () =>
-    {
-      const resp = await request(app).get('/api/vq/restaurants/2');
-      expect(resp.status).toBe(200);
-      expect(resp.body).toMatchInlineSnapshot(`
+  });
+  it('#GET api/v1/restaurants/:restId should return a restaurant with id and nested reviews', async () =>
+  {
+    const resp = await request(app).get('/api/vq/restaurants/2');
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot(`
         Object {
             "cost": 3,
             "cuisine": "Italian",
@@ -83,7 +83,7 @@ describe('/api/v1/restaurants routes', () => {
             "website": "http://www.muccaosteria.com",
         }
       `);
-    });
+  });
 
   afterAll(() => {
     pool.end();
