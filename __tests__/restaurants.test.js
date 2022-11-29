@@ -10,7 +10,6 @@ describe('/api/v1/restaurants routes', () => {
 
   it('#GET /api/v1/restaurants should return a list of restaurants', async () => {
     const resp = await request(app).get('/api/v1/restaurants');
-    console.log(resp.body);
     expect(resp.status).toEqual(200);
     expect(resp.body).toMatchInlineSnapshot(`
       Array [
