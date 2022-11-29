@@ -92,4 +92,7 @@ INSERT INTO
 VALUES
   (1, 1, 5, 'Best restaurant ever!'),
   (2, 1, 1, 'Terrible service :('),
-  (3, 1, 4, 'It was fine.');
+  (3, 1, 4, 'It was fine.'),
+  (1, 2, 5, 'Il ristorante migliore di Portland!'),
+  (2, 2, 4, 'Not-a bad, could-a used more mushrooms..'),
+  (3, 2, 2, 'Das ist Schiesse');

@@ -58,7 +58,26 @@ describe('/api/v1/restaurants routes', () => {
         "id": "2",
         "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/13/af/df/89/duck.jpg",
         "name": "Mucca Osteria",
-        "reviews": Array [],
+        "reviews": Array [
+          Object {
+            "detail": "Il ristorante migliore di Portland!",
+            "id": "4",
+            "stars": 5,
+            "user_id": "1",
+          },
+          Object {
+            "detail": "Not-a bad, could-a used more mushrooms..",
+            "id": "5",
+            "stars": 4,
+            "user_id": "2",
+          },
+          Object {
+            "detail": "Das ist Schiesse",
+            "id": "6",
+            "stars": 2,
+            "user_id": "3",
+          },
+        ],
         "website": "http://www.muccaosteria.com",
       }
     `);
