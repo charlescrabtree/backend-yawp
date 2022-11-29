@@ -48,7 +48,43 @@ describe('/api/v1/restaurants routes', () => {
         },
       ]
     `);
-  });
+  })
+    .get('#GET api/v1/restaurants/:id should return a restaurant with id and nested reviews', async () =>
+    {
+      const resp = await request(app).get('/api/vq/restaurants/2');
+      expect(resp.status).toBe(200);
+      expect(resp.body).toMatchInlineSnapshot(`
+        Object {
+            "cost": 3,
+            "cuisine": "Italian",
+            "id": "2",
+            "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/13/af/df/89/duck.jpg",
+            "name": "Mucca Osteria",
+            "reviews": Array [
+                Object {
+                  "detail": "Best restaurant ever!",
+                  "id": "1",
+                  "stars": 5,
+                  "user_id": "1",
+                },
+                Object {
+                  "detail": "Terrible service :(",
+                  "id": "2",
+                  "stars" 1,
+                  "user_id": "2",
+                },
+                Object {
+                  "detail": "It was fine.",
+                  "id": "3",
+                  "stars": 4,
+                  "user_id": "3",
+                },
+            ],
+            "website": "http://www.muccaosteria.com",
+        }
+      `);
+    });
+
   afterAll(() => {
     pool.end();
   });
