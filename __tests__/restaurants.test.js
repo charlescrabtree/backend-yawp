@@ -49,12 +49,17 @@ describe('/api/v1/restaurants routes', () => {
     `);
   });
   it('#GET api/v1/restaurants/:restId should return a restaurant with id and nested reviews', async () => {
-    const resp = await request(app).get('/api/vq/restaurants/2');
+    const resp = await request(app).get('/api/v1/restaurants/2');
     // expect(resp.status).toBe(200);
     expect(resp.body).toMatchInlineSnapshot(`
       Object {
-        "message": "Not Found",
-        "status": 404,
+        "cost": 3,
+        "cuisine": "Italian",
+        "id": "2",
+        "image": "https://media-cdn.tripadvisor.com/media/photo-m/1280/13/af/df/89/duck.jpg",
+        "name": "Mucca Osteria",
+        "reviews": Array [],
+        "website": "http://www.muccaosteria.com",
       }
     `);
     // Object {
