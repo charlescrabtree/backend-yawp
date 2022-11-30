@@ -90,14 +90,14 @@ describe('/api/v1/restaurants routes', () => {
       }
     `);
   });
-  
+
   const registerAndLogin = async (userProps = {}) => {
     const password = userProps.password ?? totallyRealUser.password;
     const agent = request.agent(app);
     const user = await UserService.create({ ...totallyRealUser, ...userProps });
 
     const { email } = user;
-    await (await agent.post('/api/v1/users/sessions')).setEncoding({ email, password });
+    await agent.post('/api/v1/users/sessions').send({ email, password });
     return [agent, user];
   };
 
@@ -105,10 +105,16 @@ describe('/api/v1/restaurants routes', () => {
     const [agent] = await registerAndLogin();
     const resp = await agent
       .post('/api/v1/restaurants/1/reviews')
-      .send({ detail: 'This is a test review' });
+      .send({ stars: 5, detail: 'This is a test review' });
     expect(resp.status).toBe(200);
-    expect(resp.body).toMatchInlineSnapshot();
-    
+    expect(resp.body).toMatchInlineSnapshot(`
+      Object {
+        "detail": "This is a test review",
+        "id": "7",
+        "stars": 5,
+        "user_id": null,
+      }
+    `);
   });
   afterAll(() => {
     pool.end();
