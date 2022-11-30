@@ -100,6 +100,16 @@ describe('/api/v1/restaurants routes', () => {
     await (await agent.post('/api/v1/users/sessions')).setEncoding({ email, password });
     return [agent, user];
   };
+
+  it('POST /api/v1/restaurants/:id/reviews should create a new review when logged in', async () => {
+    const [agent] = await registerAndLogin();
+    const resp = await agent
+      .post('/api/v1/restaurants/1/reviews')
+      .send({ detail: 'This is a test review' });
+    expect(resp.status).toBe(200);
+    expect(resp.body).toMatchInlineSnapshot();
+    
+  });
   afterAll(() => {
     pool.end();
   });
