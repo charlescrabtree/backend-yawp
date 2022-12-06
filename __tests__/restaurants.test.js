@@ -116,13 +116,30 @@ describe('/api/v1/restaurants routes', () => {
       }
     `);
   });
+
+  const mockAdmin = {
+    email: 'adminnie',
+    firstName: "adminime",
+    lastName: 'adminopolis',
+    password: 'Im surrounded by adholes',
+  };
+
+  const mockReview = {
+    stars: 5,
+    detail: 'this was horrible, I loved it',
+  };
+
   it('DELETE /api/v1/reviews/:id should delete a review', async() => {
-    const [agent] = await registerAndLogin();
-    const res = await agent.delete('/api/v1/reviews/1');
+    const [agent] = await registerAndLogin(mockAdmin);
+
+    const review = await agent
+      .post('/api/v1/restaurants/3/reviews')
+      .send(mockReview);
+    const res = await agent.delete(`/api/v1/reviews/${review.body.id}`);
     expect(res.status).toBe(200);
 
-    const revResp = await agent.get('/api/v1/reviews/1');
-    expect(revResp.status).toBe(404);
+    const getResp = await request(app).get(`/api/v1/reviews/$review.body.id}`);
+    expect(getResp.status).toBe(404);
   });
   afterAll(() => {
     pool.end();
