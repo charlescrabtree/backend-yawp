@@ -119,7 +119,7 @@ describe('/api/v1/restaurants routes', () => {
 
   const mockAdmin = {
     email: 'adminnie',
-    firstName: "adminime",
+    firstName: 'adminime',
     lastName: 'adminopolis',
     password: 'Im surrounded by adholes',
   };
@@ -138,7 +138,7 @@ describe('/api/v1/restaurants routes', () => {
     const res = await agent.delete(`/api/v1/reviews/${review.body.id}`);
     expect(res.status).toBe(200);
 
-    const getResp = await request(app).get(`/api/v1/reviews/$review.body.id}`);
+    const getResp = await request(app).get(`/api/v1/reviews/${review.body.id}`);
     expect(getResp.status).toBe(404);
   });
   afterAll(() => {
